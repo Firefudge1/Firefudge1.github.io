@@ -1,25 +1,25 @@
-.projects {
+.work {
   padding: clamp(72px, 10vw, 140px) 0;
   border-top: 1px solid var(--border);
   scroll-margin-top: 68px;
 }
 
-.projects-header {
+.work-header {
   max-width: 62ch;
   margin-bottom: clamp(48px, 7vw, 96px);
 }
 
-.projects-header .section-heading {
+.work-header .section-heading {
   margin-top: 12px;
 }
 
-.projects-intro {
+.work-intro {
   margin-top: 18px;
   font-size: 16px;
   line-height: 1.75;
 }
 
-.projects-list {
+.work-list {
   display: flex;
   flex-direction: column;
   gap: clamp(72px, 10vw, 148px);
@@ -27,7 +27,7 @@
 
 /* ---------- one project ---------- */
 
-.project {
+.work-item {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   gap: clamp(32px, 5vw, 72px);
@@ -35,11 +35,11 @@
   scroll-margin-top: 90px;
 }
 
-.project.is-flipped .project-media {
+.work-item.is-flipped .work-media {
   order: 2;
 }
 
-.project-media {
+.work-media {
   position: sticky;
   top: 100px;
   display: flex;
@@ -145,7 +145,7 @@
   opacity: 0.85;
 }
 
-.project-thumbs {
+.work-thumbs {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   align-items: start;
@@ -163,33 +163,33 @@
 
 /* ---------- text column ---------- */
 
-.project-index {
+.work-index {
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.18em;
   color: var(--emerald-light);
 }
 
-.project-name {
+.work-name {
   margin-top: 10px;
   font-size: clamp(26px, 3.2vw, 38px);
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
-.project-org {
+.work-org {
   margin-top: 12px;
   font-family: var(--mono);
   font-size: 12.5px;
   color: var(--text-tertiary);
 }
 
-.project-dot {
+.work-dot {
   margin: 0 8px;
   opacity: 0.6;
 }
 
-.project-blurb {
+.work-blurb {
   margin-top: 22px;
   font-size: 17px;
   line-height: 1.65;
@@ -232,14 +232,14 @@
 
 /* ---------- detail blocks ---------- */
 
-.project-blocks {
+.work-blocks {
   margin-top: 34px;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.project-block-heading {
+.work-block-heading {
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 500;
@@ -250,7 +250,7 @@
   border-bottom: 1px solid var(--border);
 }
 
-.project-block-body {
+.work-block-body {
   margin-top: 12px;
   font-size: 14.5px;
   line-height: 1.8;
@@ -275,16 +275,16 @@
 }
 
 @media (max-width: 900px) {
-  .project {
+  .work-item {
     grid-template-columns: 1fr;
     gap: 28px;
   }
 
-  .project.is-flipped .project-media {
+  .work-item.is-flipped .work-media {
     order: 0;
   }
 
-  .project-media {
+  .work-media {
     position: static;
   }
 }

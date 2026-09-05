@@ -1,5 +1,8 @@
 const asset = (path) => `${import.meta.env.BASE_URL}projects/${path}`
 
+// `projects` and `research` share the same shape and are rendered by the same
+// WorkSection component; they are split only so the page can present them as
+// two distinct sections.
 export const projects = [
   {
     id: 'corner-sensor-module',
@@ -123,34 +126,6 @@ export const projects = [
     ],
   },
   {
-    id: 'cross-medium-learning',
-    name: 'Cross-Medium Learning',
-    org: 'Robot Interactive Intelligence Lab · UT Austin',
-    dates: 'Nov 2025 – Present',
-    blurb:
-      'Teleoperated demonstration data for a behavioral-cloning policy that performs pick-and-place across varied physical media.',
-    metrics: [
-      { value: '300+', label: 'Demonstrations collected' },
-      { value: '7', label: 'Arm degrees of freedom' },
-    ],
-    images: [],
-    skills: ['Python', 'Imitation Learning', 'Behavioral Cloning', 'Teleoperation', 'Franka Emika', 'Data Curation', 'Policy Rollouts'],
-    sections: [
-      {
-        heading: 'System Requirements',
-        body: 'The policy needed to generalize pick-and-place behavior across physical media with meaningfully different dynamics, which demanded a large, consistent, high-quality demonstration set rather than raw volume.',
-      },
-      {
-        heading: 'Process',
-        body: 'I teleoperated a Franka Emika arm to collect 300+ demonstrations spanning the target media. I then curated the dataset — assessing each run and pruning suboptimal trajectories so only high-quality imitation data reached training — and ran policy rollouts to evaluate model performance against the collected behavior.',
-      },
-      {
-        heading: 'My Contributions',
-        body: 'I handle data collection, dataset curation, and evaluation: capturing demonstrations, deciding what quality bar keeps a trajectory in the set, and running rollouts to measure how the trained policy actually performs.',
-      },
-    ],
-  },
-  {
     id: 'frc-8576',
     name: 'Competition Robot Electronics',
     org: 'FIRST Robotics Competition · Team 8576',
@@ -182,6 +157,37 @@ export const projects = [
       {
         heading: 'Recognition',
         body: 'Selected as one of two team members named a FIRST Dean’s List Semifinalist (2024). The team won the FIRST in Texas State Championship in 2023, qualified for the World Championship twice, won the Creativity Award three times, and qualified for State four times in 2022. I returned as a youth mentor in 2025 to carry the electrical knowledge forward to newer members.',
+      },
+    ],
+  },
+]
+
+export const research = [
+  {
+    id: 'cross-medium-learning',
+    name: 'Cross-Medium Learning',
+    org: 'Robot Interactive Intelligence Lab · UT Austin',
+    dates: 'Nov 2025 – Present',
+    blurb:
+      'Teleoperated demonstration data for a behavioral-cloning policy that performs pick-and-place across varied physical media.',
+    metrics: [
+      { value: '300+', label: 'Demonstrations collected' },
+      { value: '7', label: 'Arm degrees of freedom' },
+    ],
+    images: [],
+    skills: ['Python', 'Imitation Learning', 'Behavioral Cloning', 'Teleoperation', 'Franka Emika', 'Data Curation', 'Policy Rollouts'],
+    sections: [
+      {
+        heading: 'Research Question',
+        body: 'The policy needed to generalize pick-and-place behavior across physical media with meaningfully different dynamics, which demanded a large, consistent, high-quality demonstration set rather than raw volume.',
+      },
+      {
+        heading: 'Process',
+        body: 'I teleoperated a Franka Emika arm to collect 300+ demonstrations spanning the target media. I then curated the dataset — assessing each run and pruning suboptimal trajectories so only high-quality imitation data reached training — and ran policy rollouts to evaluate model performance against the collected behavior.',
+      },
+      {
+        heading: 'My Contributions',
+        body: 'I handle data collection, dataset curation, and evaluation: capturing demonstrations, deciding what quality bar keeps a trajectory in the set, and running rollouts to measure how the trained policy actually performs.',
       },
     ],
   },

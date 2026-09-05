@@ -1,8 +1,9 @@
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
-import Projects from './components/Projects.jsx'
+import WorkSection from './components/WorkSection.jsx'
 import Skills from './components/Skills.jsx'
 import Footer from './components/Footer.jsx'
+import { projects, research } from './data/projects.js'
 
 function App() {
   return (
@@ -10,7 +11,23 @@ function App() {
       <Nav />
       <main>
         <Hero />
-        <Projects />
+
+        <WorkSection
+          id="projects"
+          eyebrow="Selected work"
+          heading="Projects"
+          intro="Hardware and firmware I have designed, assembled, and debugged — from high-voltage safety electronics to distributed embedded systems."
+          items={projects}
+        />
+
+        <WorkSection
+          id="research"
+          eyebrow="Ongoing"
+          heading="Research"
+          intro="Robot learning work at UT Austin — collecting and curating the demonstration data that teaches a manipulation policy to generalize."
+          items={research}
+        />
+
         <Skills />
       </main>
       <Footer />

@@ -3,6 +3,7 @@ import './Nav.css'
 
 const links = [
   { href: '#projects', label: 'Projects' },
+  { href: '#research', label: 'Research' },
   { href: '#skills', label: 'Skills' },
   { href: '#contact', label: 'Contact' },
 ]

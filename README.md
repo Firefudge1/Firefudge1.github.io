@@ -1,16 +1,54 @@
-# React + Vite
+# firefudge1.github.io
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio site — Arav Karnik, Electrical and Computer Engineering at
+UT Austin. Live at **https://firefudge1.github.io/**.
 
-Currently, two official plugins are available:
+Covers PCB design, embedded firmware, and robotics work: suspension telemetry
+and high-voltage safety electronics for Longhorn Racing's Formula SAE car,
+embedded systems work at Adom Industries, imitation-learning research at UT's
+Robot Interactive Intelligence Lab, and four seasons of FIRST Robotics
+electrical design.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- **React 19** — UI, no router or state library
+- **Vite 8** — dev server and production build
+- **Plain CSS** — custom properties for theming, no framework
+- **oxlint** — linting
+- **GitHub Actions → GitHub Pages** — build and deploy on push to `main`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Two runtime dependencies: `react` and `react-dom`.
 
-## Expanding the Oxlint configuration
+## Local development
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Requires Node 20.19+ or 22.12+.
+
+```bash
+npm install
+npm run dev      # dev server at http://localhost:5173
+npm run build    # production build into dist/
+npm run preview  # serve the built output locally
+npm run lint     # oxlint
+```
+
+## Layout
+
+```
+index.html            page shell
+src/main.jsx          mounts <App/>
+src/App.jsx           Nav → Hero → Projects → Skills → Footer
+src/components/       one component + its stylesheet per file
+src/data/             projects, skills, contacts — content lives here, not in markup
+src/hooks/            useReveal (IntersectionObserver scroll reveal)
+public/projects/      project imagery
+```
+
+Content is data-driven: adding or editing a project means changing
+`src/data/projects.js`, not component code.
+
+## Deployment
+
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs
+`npm ci && npm run build` and publishes `dist/` to GitHub Pages. The repository's
+Pages source is set to **GitHub Actions** rather than a branch, since the site
+needs a build step.

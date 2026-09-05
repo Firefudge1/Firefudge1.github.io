@@ -1,0 +1,290 @@
+.projects {
+  padding: clamp(72px, 10vw, 140px) 0;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 68px;
+}
+
+.projects-header {
+  max-width: 62ch;
+  margin-bottom: clamp(48px, 7vw, 96px);
+}
+
+.projects-header .section-heading {
+  margin-top: 12px;
+}
+
+.projects-intro {
+  margin-top: 18px;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(72px, 10vw, 148px);
+}
+
+/* ---------- one project ---------- */
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+  scroll-margin-top: 90px;
+}
+
+.project.is-flipped .project-media {
+  order: 2;
+}
+
+.project-media {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.figure {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  transition: border-color 0.3s ease;
+}
+
+.figure:hover {
+  border-color: var(--border-hover);
+}
+
+.figure-button {
+  cursor: zoom-in;
+}
+
+.figure-button:hover {
+  border-color: var(--emerald);
+}
+
+.figure-button:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 3px;
+}
+
+.figure-button img {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.figure-button:hover img {
+  transform: scale(1.03);
+}
+
+/* expand affordance, revealed on hover/focus */
+.figure-zoom {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--emerald-line);
+  background: rgba(6, 18, 13, 0.82);
+  backdrop-filter: blur(4px);
+  color: var(--emerald-light);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.figure-button:hover .figure-zoom,
+.figure-button:focus-visible .figure-zoom {
+  opacity: 1;
+  transform: none;
+}
+
+.figure-zoom svg {
+  width: 15px;
+  height: 15px;
+}
+
+@media (hover: none) {
+  .figure-zoom {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Images keep their own proportions — nothing is cropped. */
+.figure img {
+  width: 100%;
+  height: auto;
+}
+
+/* Only the fallback art needs a fixed box, since it has no intrinsic size. */
+.figure-fallback {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  color: var(--emerald);
+  background:
+    radial-gradient(circle at 50% 45%, var(--emerald-dim), transparent 62%),
+    var(--card);
+}
+
+.figure-fallback svg {
+  width: 34%;
+  height: 34%;
+  opacity: 0.85;
+}
+
+.project-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  align-items: start;
+  gap: 14px;
+}
+
+.figure-thumb.figure-fallback {
+  aspect-ratio: 16 / 10;
+}
+
+.figure-thumb.figure-fallback svg {
+  width: 30%;
+  height: 30%;
+}
+
+/* ---------- text column ---------- */
+
+.project-index {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--emerald-light);
+}
+
+.project-name {
+  margin-top: 10px;
+  font-size: clamp(26px, 3.2vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.project-org {
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--text-tertiary);
+}
+
+.project-dot {
+  margin: 0 8px;
+  opacity: 0.6;
+}
+
+.project-blurb {
+  margin-top: 22px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-primary);
+  max-width: 56ch;
+}
+
+/* ---------- KPI row ---------- */
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px;
+  margin-top: 32px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.metric {
+  padding: 18px 20px;
+  background: var(--card);
+}
+
+.metric-value {
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.metric-label {
+  margin-top: 8px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--text-tertiary);
+}
+
+/* ---------- detail blocks ---------- */
+
+.project-blocks {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.project-block-heading {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--emerald-light);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-block-body {
+  margin-top: 12px;
+  font-size: 14.5px;
+  line-height: 1.8;
+  max-width: 68ch;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 32px;
+}
+
+.chips li {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--emerald-light);
+  background: var(--emerald-dim);
+  border: 1px solid var(--emerald-line);
+  border-radius: 6px;
+  padding: 5px 10px;
+}
+
+@media (max-width: 900px) {
+  .project {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .project.is-flipped .project-media {
+    order: 0;
+  }
+
+  .project-media {
+    position: static;
+  }
+}

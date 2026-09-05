@@ -1,0 +1,65 @@
+.footer {
+  padding-top: clamp(72px, 10vw, 130px);
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 68px;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(16, 185, 129, 0.09), transparent 70%),
+    var(--bg);
+}
+
+.footer-heading {
+  margin-top: 16px;
+  max-width: 22ch;
+  font-size: clamp(26px, 4vw, 46px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.footer-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 38px;
+}
+
+.footer-contacts a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.footer-contacts a:hover {
+  border-color: var(--emerald);
+  color: var(--emerald-light);
+  background: var(--emerald-dim);
+}
+
+.footer-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.footer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: clamp(56px, 8vw, 96px);
+  padding: 24px 0 32px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-bar p {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+}

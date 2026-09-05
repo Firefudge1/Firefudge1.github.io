@@ -1,0 +1,37 @@
+import { useEffect, useRef } from 'react'
+
+/**
+ * Adds `is-visible` the first time an element scrolls into view, then stops
+ * observing it. Elements stay visible if IntersectionObserver is unavailable.
+ */
+export default function useReveal() {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+
+    if (
+      typeof IntersectionObserver === 'undefined' ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      node.classList.add('is-visible')
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          node.classList.add('is-visible')
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
+  return ref
+}

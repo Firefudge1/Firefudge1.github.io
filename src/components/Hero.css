@@ -70,9 +70,9 @@
 
 .hero-tagline {
   margin-top: 30px;
-  max-width: 30ch;
-  font-size: clamp(19px, 2.4vw, 30px);
-  line-height: 1.4;
+  max-width: 52ch;
+  font-size: clamp(17px, 1.9vw, 23px);
+  line-height: 1.55;
   color: var(--text-primary);
   font-weight: 400;
 }

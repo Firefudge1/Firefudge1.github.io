@@ -29,11 +29,40 @@ export const projects = [
       },
       {
         heading: 'Process',
-        body: 'I reviewed datasheets for each sensor and the STM32G474 to design appropriate filter and interface circuitry, then iterated the schematic across two design cycles against team feedback. I selected components to team standards and manufacturer recommendations, compiled a BOM optimized for bulk ordering, and hand-assembled the board — soldering and debugging hardware before moving to firmware.',
+        body: 'I reviewed datasheets for each sensor and the STM32G474 to design appropriate filter and interface circuitry, then iterated the schematic across two design cycles against team feedback. I selected components to team standards and manufacturer recommendations, compiled a BOM optimized for bulk ordering, and hand-assembled the board (soldering and debugging hardware) before moving to firmware.',
       },
       {
         heading: 'My Contributions',
-        body: 'I own the board end-to-end: schematic and layout in KiCad, MCU and IO connector pinouts, assembly, debugging, and the C/FreeRTOS firmware that samples all four sensors and streams data over SPI and CAN.',
+        body: 'I owned the board end-to-end: schematic and layout in KiCad, MCU and IO connector pinouts, assembly, debugging, and the C/FreeRTOS firmware that samples all four sensors and streams data over SPI and CAN.',
+      },
+    ],
+  },
+  {
+    id: 'input-module',
+    name: 'Input Module',
+    org: 'Adom Industries',
+    dates: 'May 2026 – Aug 2026',
+    blurb:
+      'A distributed sensing rack: embedded boards that identify third-party devices and report them over CAN to a gateway and server.',
+    metrics: [
+      { value: '2', label: 'Buses bridged (CAN, RS-485)' },
+      { value: '3', label: 'Tiers built (board, gateway, server)' },
+      { value: '2', label: 'Boards manufactured and in production' },
+    ],
+    images: [],
+    skills: ['Embedded Rust', 'CAN', 'RS-485', 'Raspberry Pi', 'WebSocket', 'JavaScript', 'Python'],
+    sections: [
+      {
+        heading: 'System Requirements',
+        body: 'The system needed to identify attached third-party devices, report their state reliably to a central controller, and drive real-time status indicators across a rack — forming the sensing layer of an inventory-management system.',
+      },
+      {
+        heading: 'Process',
+        body: 'I designed the embedded boards that communicate with the third-party devices and pass their state over a shared CAN bus to a Raspberry Pi acting as gateway. I architected and built both client and server for the data pipeline: the Pi relays messages over WebSocket to a server that cross-references them against a database to infer the contents of each slot.',
+      },
+      {
+        heading: 'My Contributions',
+        body: 'I designed the board and wrote its firmware, built the gateway client, and adapted the server to support the data pipeline (accepting data, integrating it with the database, dashboard for lookup, etc.). Real-time status indicators are driven from an LED-state array the server returns, so the rack reflects changes dynamically.',
       },
     ],
   },
@@ -43,7 +72,7 @@ export const projects = [
     org: 'Longhorn Racing · Formula SAE',
     dates: 'Sept 2025 – Present',
     blurb:
-      'Full-vehicle wire harness modeled in SolidWorks and built in RapidHarness — I own the rear-right segment.',
+      'Full-vehicle wire harness modeled in SolidWorks and built in RapidHarness. I owned the rear-right segment.',
     metrics: [
       { value: '275 mi', label: 'Testing supported' },
       { value: '2 mo', label: 'Earlier to first drive' },
@@ -56,15 +85,15 @@ export const projects = [
     sections: [
       {
         heading: 'System Requirements',
-        body: 'The harness delivers power and signal to every electronic device on the car. My rear-right segment services the low-voltage BMS, brake light, rear-right Corner Sensor Module, Upright Sensor Module, battery cooling fans, roll-hoop status light, and right-side emergency stop — while minimizing total length and unnecessary complexity.',
+        body: 'The harness delivers power and signal to every electronic device on the car. My rear-right segment services the low-voltage BMS, brake light, rear-right Corner Sensor Module, Upright Sensor Module, battery cooling fans, roll-hoop status light, and right-side emergency stop while minimizing total length and unnecessary complexity.',
       },
       {
         heading: 'Process',
-        body: 'I imported the vehicle frame reference into SolidWorks and added board enclosures, sketched the general layout, then translated it into RapidHarness. After refining the layout, choosing connectors and wires, and defining twisted-pair connections, we ran design reviews to validate electrical and mechanical compatibility — then returned to SolidWorks to align against the full vehicle CAD and pulled final lengths to complete the drawing and BOM.',
+        body: 'I imported the vehicle frame reference into SolidWorks, sketched the general layout, then translated it into RapidHarness. After refining the layout, choosing connectors and wires, and defining twisted-pair connections, we ran design reviews to validate electrical and mechanical compatibility, and then returned to SolidWorks to align against the full vehicle CAD and pulled final lengths to complete the drawing and BOM.',
       },
       {
         heading: 'My Contributions',
-        body: 'I own the rear-right segment and built the reference framework the rest of the team used for their sections, keeping the whole harness consistent. Its robustness supported 275 miles of testing and brought first-drive more than two months earlier than the prior season.',
+        body: 'I owned the rear-right segment and worked with the team to keep the whole harness consistent. Its robustness supported 275 miles of testing and brought first-drive more than two months earlier than the prior season.',
       },
     ],
   },
@@ -80,58 +109,33 @@ export const projects = [
       { value: '<5 s', label: 'To under 60 V' },
       { value: '60 s', label: 'Withstand at full voltage' },
     ],
-    images: [],
-    skills: ['KiCad', 'Power Electronics', 'Thermal Analysis', 'High-Voltage Layout', 'Component Sourcing', 'FSAE Rules'],
+    
+    images: [
+      { src: asset('DischargeBoardRevBss.png'), alt: 'Ray-traced render of the Discharge Board (Rev B pictured)' },
+    ],
+    skills: ['KiCad', 'Component Sourcing'],
     sections: [
       {
         heading: 'System Requirements',
-        body: 'The board must step 546V down below 60V in under five seconds while withstanding constant tractive-system voltage for 60 seconds without solder reflow — accounting for the inverter’s inherent resistance and capacitance.',
+        body: 'The board must step 546V down below 60V in under five seconds while withstanding constant tractive-system voltage for 60 seconds without solder reflow.',
       },
       {
         heading: 'Process',
-        body: 'I reviewed the inverter datasheet for key parameters, calculated total discharge resistance, and sourced components rated for both the power and thermal load. I laid the board out in KiCad with an emphasis on thermal and voltage management — excess copper pour, creepage spacing — then generated and exported the BOM.',
+        body: 'I reviewed the inverter datasheet for key parameters, calculated total discharge resistance, and sourced components rated for both the power and thermal load. I laid the board out in KiCad with an emphasis on thermal and voltage management (excess copper pour, creepage spacing), then generated and exported the BOM.',
       },
       {
         heading: 'My Contributions',
-        body: 'Sole designer, owning the complete development cycle: requirements, calculations, layout, thermal analysis, and component sourcing.',
-      },
-    ],
-  },
-  {
-    id: 'input-module',
-    name: 'Input Module',
-    org: 'Adom Industries',
-    dates: 'May 2026 – Aug 2026',
-    blurb:
-      'A distributed sensing rack: embedded boards that identify third-party devices and report them over CAN to a gateway and server.',
-    metrics: [
-      { value: '2', label: 'Buses bridged (CAN, RS-485)' },
-      { value: '3', label: 'Tiers built (board, gateway, server)' },
-    ],
-    images: [],
-    skills: ['Embedded C', 'CAN', 'RS-485', 'Raspberry Pi', 'WebSocket', 'JavaScript', 'Client / Server'],
-    sections: [
-      {
-        heading: 'System Requirements',
-        body: 'The system needed to identify attached third-party devices, report their state reliably to a central controller, and drive real-time status indicators across a rack — forming the sensing layer of an inventory-management system.',
-      },
-      {
-        heading: 'Process',
-        body: 'I designed the embedded boards that communicate with the third-party devices over RS-485 and pass their state over a shared CAN bus to a Raspberry Pi acting as gateway. I architected and built both client and server for the data pipeline: the Pi relays messages over WebSocket to a server that cross-references them against a database to infer the contents of each slot.',
-      },
-      {
-        heading: 'My Contributions',
-        body: 'I built all three tiers — board design and firmware, the gateway client, and the server — and designed the primary rack the boards mount into. Real-time status indicators are driven from an LED-state array the server returns, so the rack reflects inventory as it changes.',
+        body: 'Owned the Revision A design (requirements, calculations, initial layout, component sourcing).',
       },
     ],
   },
   {
     id: 'frc-8576',
-    name: 'Competition Robot Electronics',
-    org: 'FIRST Robotics Competition · Team 8576',
+    name: 'First Robotics Competition',
+    org: 'FRC Team 8576',
     dates: 'Aug 2021 – May 2025',
     blurb:
-      'Four seasons of competition robot electronics — control system design and integration, plus a signal-integrity study of CAN bus topology.',
+      'Four seasons of competition robot electronics: control system design and integration, plus a signal-integrity study of CAN bus topology.',
     metrics: [
       { value: '2023', label: 'FIT State champions' },
       { value: '2×', label: 'Worlds qualifications' },
@@ -148,11 +152,11 @@ export const projects = [
     sections: [
       {
         heading: 'The Robots',
-        body: 'I did electronics across all four of my seasons on Team 8576 — Pyrite as a rookie, then Gold Rush, 24K, and Goldfish — and led control system design and integration for the 2023 and 2024 robots. I worked with the mechanical and programming subsystems to define wire paths, organize cable management, and route around moving parts, iterating the design as mechanical requirements changed. Prioritizing maintainability and robustness over cleverness led to little-to-no workmanship errors across competition seasons.',
+        body: 'I did electronics across all four of my seasons on Team 8576 (Pyrite as a rookie, then Gold Rush, 24K, and Goldfish) and led electrical system design and integration for the 2023 and 2024 robots. I worked with the mechanical and programming subsystems to define wire paths, organize cable management, and route around moving parts, iterating the design as mechanical requirements changed. Prioritizing maintainability and robustness over cleverness led to little-to-no workmanship errors across competition seasons.',
       },
       {
         heading: 'Star Topology Validation',
-        body: 'In my senior year I ran a project to quantitatively determine whether a star topology was viable for the robot’s CAN bus. I built a test setup and collected motor-controller oscilloscope readings across varied stub lengths and counts, analyzing signal reflections and overall signal integrity to judge where the topology held up and where it degraded.',
+        body: 'In my senior year I ran a project to quantitatively determine whether a star topology was viable for the robot’s CAN bus. We built a test setup and collected motor-controller oscilloscope readings across varied stub lengths and counts, analyzing signal reflections and overall signal integrity to judge where the topology held up and where it degraded.',
       },
       {
         heading: 'Recognition',
@@ -176,7 +180,7 @@ export const research = [
       { value: '7', label: 'Arm degrees of freedom' },
     ],
     images: [],
-    skills: ['Python', 'Imitation Learning', 'Behavioral Cloning', 'Teleoperation', 'Franka Emika', 'Tactile Sensing', 'Depth Sensing', 'Data Curation', 'Policy Rollouts'],
+    skills: ['Python', 'Imitation Learning', 'Behavioral Cloning', 'Teleoperation', 'Data Curation', 'Policy Rollouts'],
     sections: [
       {
         heading: 'Research Question',
@@ -184,11 +188,11 @@ export const research = [
       },
       {
         heading: 'Process',
-        body: 'I teleoperated a Franka Emika arm to collect 300+ demonstrations spanning the target media, captured across three sensing modalities — a tactile sensor, a depth sensor, and a camera. I then curated the dataset — assessing each run and pruning suboptimal trajectories so only high-quality imitation data reached training — and ran policy rollouts to evaluate model performance against the collected behavior.',
+        body: 'I teleoperated a Franka Emika arm to collect 300+ demonstrations spanning the target media, captured across three sensing modalities: tactile sensing, depth sensing, and a camera. I then curated the dataset by assessing each run and pruning suboptimal trajectories so only high-quality imitation data reached training, then ran policy rollouts to evaluate model performance against the collected behavior.',
       },
       {
         heading: 'My Contributions',
-        body: 'I handle data collection, dataset curation, and evaluation: capturing demonstrations, deciding what quality bar keeps a trajectory in the set, and running rollouts to measure how the trained policy actually performs.',
+        body: 'I handled data collection, dataset curation, and evaluation: running rollouts to measure how the trained policy actually performs.',
       },
     ],
   },

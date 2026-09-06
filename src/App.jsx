@@ -16,7 +16,7 @@ function App() {
           id="projects"
           eyebrow="Selected work"
           heading="Projects"
-          intro="Hardware and firmware I have designed, assembled, and debugged — from high-voltage safety electronics to distributed embedded systems."
+          intro="Hardware and firmware I have designed, assembled, and debugged, from sensing systems to embedded controllers."
           items={projects}
         />
 
@@ -24,7 +24,7 @@ function App() {
           id="research"
           eyebrow="Ongoing"
           heading="Research"
-          intro="Robot learning work at UT Austin — collecting and curating the demonstration data that teaches a manipulation policy to generalize."
+          intro="Robot learning work at UT Austin: collecting and curating the demonstration data that teaches a manipulation policy to generalize, and evaluating its performance."
           items={research}
         />
 

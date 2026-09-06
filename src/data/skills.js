@@ -20,6 +20,6 @@ export const skillGroups = [
   },
   {
     category: 'CAD & Tools',
-    items: ['RapidHarness', 'CoppeliaSim', 'Git', 'Linux / Bash'],
+    items: ['RapidHarness', 'Git', 'Linux / Bash'],
   },
 ]

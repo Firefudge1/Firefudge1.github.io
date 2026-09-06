@@ -16,14 +16,13 @@ export default function Hero() {
         </h1>
 
         <p className="hero-tagline">
-          I build at the intersection of <em>hardware</em> and <em>intelligence</em> —
-          PCBs, embedded firmware, and the systems that turn sensor data into motion.
+          Hi! I'm a second-year ECE student at UT Austin. I've worked on PCBs, firmware, and software, and I love building things that move (or are supposed to move). Here's some of the stuff I've done.
         </p>
 
         <p className="hero-bio">
           Currently designing suspension telemetry electronics for Longhorn Racing’s
           Formula SAE car and researching imitation learning at the Robot Interactive
-          Intelligence Lab. Previously at NASA, servicing lunar rover hardware.
+          Intelligence Lab.
         </p>
 
         <ul className="hero-contacts">

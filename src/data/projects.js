@@ -172,10 +172,11 @@ export const research = [
       'Teleoperated demonstration data for a behavioral-cloning policy that performs pick-and-place across varied physical media.',
     metrics: [
       { value: '300+', label: 'Demonstrations collected' },
+      { value: '3', label: 'Sensing modalities' },
       { value: '7', label: 'Arm degrees of freedom' },
     ],
     images: [],
-    skills: ['Python', 'Imitation Learning', 'Behavioral Cloning', 'Teleoperation', 'Franka Emika', 'Data Curation', 'Policy Rollouts'],
+    skills: ['Python', 'Imitation Learning', 'Behavioral Cloning', 'Teleoperation', 'Franka Emika', 'Tactile Sensing', 'Depth Sensing', 'Data Curation', 'Policy Rollouts'],
     sections: [
       {
         heading: 'Research Question',
@@ -183,7 +184,7 @@ export const research = [
       },
       {
         heading: 'Process',
-        body: 'I teleoperated a Franka Emika arm to collect 300+ demonstrations spanning the target media. I then curated the dataset — assessing each run and pruning suboptimal trajectories so only high-quality imitation data reached training — and ran policy rollouts to evaluate model performance against the collected behavior.',
+        body: 'I teleoperated a Franka Emika arm to collect 300+ demonstrations spanning the target media, captured across three sensing modalities — a tactile sensor, a depth sensor, and a camera. I then curated the dataset — assessing each run and pruning suboptimal trajectories so only high-quality imitation data reached training — and ran policy rollouts to evaluate model performance against the collected behavior.',
       },
       {
         heading: 'My Contributions',

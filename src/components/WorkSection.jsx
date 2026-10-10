@@ -9,6 +9,7 @@ function WorkItem({ item, index }) {
   const [lightboxIndex, setLightboxIndex] = useState(null)
   const openerRef = useRef(null)
   const [hero, ...rest] = item.images
+  const hasMedia = item.images.length > 0
   const flipped = index % 2 === 1
 
   const open = (imageIndex) => (event) => {
@@ -24,30 +25,34 @@ function WorkItem({ item, index }) {
   return (
     <article
       ref={ref}
-      className={`work-item reveal${flipped ? ' is-flipped' : ''}`}
+      className={`work-item reveal${flipped ? ' is-flipped' : ''}${
+        hasMedia ? '' : ' is-textonly'
+      }`}
       id={item.id}
     >
-      <div className="work-media">
-        <ProjectFigure
-          image={hero}
-          projectId={item.id}
-          className="figure-hero"
-          onOpen={open(0)}
-        />
-        {rest.length > 0 && (
-          <div className="work-thumbs">
-            {rest.map((image, i) => (
-              <ProjectFigure
-                key={image.src}
-                image={image}
-                projectId={item.id}
-                className="figure-thumb"
-                onOpen={open(i + 1)}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+      {hasMedia && (
+        <div className="work-media">
+          <ProjectFigure
+            image={hero}
+            projectId={item.id}
+            className="figure-hero"
+            onOpen={open(0)}
+          />
+          {rest.length > 0 && (
+            <div className="work-thumbs">
+              {rest.map((image, i) => (
+                <ProjectFigure
+                  key={image.src}
+                  image={image}
+                  projectId={item.id}
+                  className="figure-thumb"
+                  onOpen={open(i + 1)}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       <div className="work-body">
         <p className="work-index">{String(index + 1).padStart(2, '0')}</p>
@@ -77,6 +82,8 @@ function WorkItem({ item, index }) {
             </div>
           ))}
         </div>
+
+        {item.note && <p className="work-note">{item.note}</p>}
 
         <ul className="chips">
           {item.skills.map((skill) => (

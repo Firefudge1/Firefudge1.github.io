@@ -1,0 +1,252 @@
+/**
+ * Print / "Save as PDF" styles.
+ *
+ * Only applies when printing — the on-screen site is untouched. Browsers drop
+ * background colors by default, so the dark theme is re-tokenized to a light
+ * one here rather than fighting it element by element.
+ */
+
+@page {
+  size: letter;
+  margin: 14mm;
+}
+
+@media print {
+  /* ---------- light palette ---------- */
+
+  :root {
+    --bg: #ffffff;
+    --bg-2: #ffffff;
+    --card: #ffffff;
+    --card-hover: #ffffff;
+    --border: #c2d2ca;
+    --border-hover: #9cb1a6;
+
+    --text-primary: #0c1a14;
+    --text-secondary: #2f4238;
+    --text-tertiary: #5a6d63;
+
+    /* Screen emerald is too light on white paper; this step holds contrast. */
+    --emerald: #0a6b48;
+    --emerald-light: #0a6b48;
+    --emerald-dim: transparent;
+    --emerald-line: #b9d8c8;
+
+    font-size: 10.5pt;
+  }
+
+  body {
+    background: #fff;
+    overflow: visible;
+  }
+
+  /* ---------- strip interactive chrome ---------- */
+
+  .nav,
+  .hero-grid,
+  .hero-glow,
+  .hero-cue,
+  .figure-zoom,
+  .lightbox {
+    display: none !important;
+  }
+
+  /* Reveal-on-scroll never fires for off-screen sections, and print renders the
+     whole document at once — without this, most of the page prints blank. */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* ---------- page flow ---------- */
+
+  .shell {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  .hero {
+    display: block;
+    min-height: 0;
+    padding: 0 0 8mm;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10mm;
+    align-items: start;
+  }
+
+  .hero-name {
+    font-size: 30pt;
+    line-height: 1.05;
+  }
+
+  .hero-tagline {
+    font-size: 11.5pt;
+    max-width: none;
+  }
+
+  .hero-bio {
+    font-size: 10pt;
+  }
+
+  .hero-portrait img {
+    width: 34mm;
+    height: auto;
+  }
+
+  .hero-contacts {
+    gap: 4mm;
+  }
+
+  .hero-contacts a {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 9.5pt;
+  }
+
+  /* Each section and each project starts on a fresh page. */
+  .work {
+    break-before: page;
+    padding: 0;
+    border-top: none;
+  }
+
+  .work-header {
+    margin-bottom: 6mm;
+  }
+
+  .work-intro {
+    font-size: 10pt;
+  }
+
+  .section-heading {
+    font-size: 20pt;
+  }
+
+  .work-list {
+    display: block;
+  }
+
+  .work-item {
+    break-before: page;
+    display: block;
+    padding: 0;
+  }
+
+  .work-list > .work-item:first-child {
+    break-before: auto;
+  }
+
+  /* Sticky media would pin the image to the viewport and repeat oddly. */
+  .work-media {
+    position: static;
+    margin-bottom: 5mm;
+  }
+
+  .work-name {
+    font-size: 16pt;
+  }
+
+  .work-blurb {
+    font-size: 11pt;
+  }
+
+  .work-block-body {
+    font-size: 10pt;
+    max-width: none;
+  }
+
+  /* ---------- keep related content together ---------- */
+
+  .figure,
+  .metrics,
+  .metric,
+  .work-block,
+  .skills-card {
+    break-inside: avoid;
+  }
+
+  .figure-hero img {
+    aspect-ratio: auto;
+    max-height: 78mm;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .work-thumbs {
+    display: flex;
+    gap: 4mm;
+  }
+
+  .figure-thumb img {
+    aspect-ratio: auto;
+    max-height: 34mm;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .metric-value {
+    font-size: 15pt;
+  }
+
+  .metric-label {
+    font-size: 8.5pt;
+  }
+
+  .chips li {
+    font-size: 8.5pt;
+    border-color: var(--emerald-line);
+  }
+
+  /* ---------- skills & footer ---------- */
+
+  .skills {
+    break-before: page;
+    padding: 0;
+    border-top: none;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5mm;
+  }
+
+  .footer {
+    break-before: avoid;
+    padding-top: 8mm;
+    background: none;
+  }
+
+  .footer-heading {
+    font-size: 13pt;
+    max-width: none;
+  }
+
+  .footer-contacts a {
+    padding: 0;
+    border: none;
+    font-size: 9.5pt;
+  }
+
+  .footer-bar {
+    margin-top: 6mm;
+    padding-bottom: 0;
+  }
+
+  /* The live URL is worth carrying on a printed copy. */
+  .footer-bar::before {
+    content: 'firefudge1.github.io';
+    font-family: var(--mono);
+    font-size: 9pt;
+    color: var(--emerald);
+  }
+}

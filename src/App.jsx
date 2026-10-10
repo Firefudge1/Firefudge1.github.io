@@ -24,7 +24,7 @@ function App() {
           id="research"
           eyebrow="Ongoing"
           heading="Research"
-          intro="Robot learning work at UT Austin: collecting and curating the demonstration data that teaches a manipulation policy to generalize, and evaluating its performance."
+          intro="Robot learning work at UT Austin."
           items={research}
         />
 

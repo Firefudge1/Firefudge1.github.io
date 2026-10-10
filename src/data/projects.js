@@ -5,10 +5,76 @@ const asset = (path) => `${import.meta.env.BASE_URL}projects/${path}`
 // two distinct sections.
 export const projects = [
   {
+    id: 'power-distribution-unit',
+    name: 'Power Distribution Unit',
+    org: 'Longhorn Racing · Formula SAE',
+    dates: '2026',
+    blurb:
+      'The car’s low-voltage power distribution and I/O concentrator: ten independently switched channels off a single 24 V accumulator rail, each one instrumented twice over.',
+    metrics: [
+      { value: '10', label: 'Switched power channels' },
+      { value: '72', label: 'Signals across the MCU boundary' },
+      { value: '2', label: 'Independent FDCAN buses' },
+    ],
+    images: [
+      { src: asset('PDU_RevA_3d_Top.png'), alt: 'Render of the Power Distribution Unit PCB' },
+      { src: asset('PDU_RevA_Layout.png'), alt: 'KiCad layout view of the Power Distribution Unit' },
+      { src: asset('PDU_RevA_Schematic.png'), alt: 'KiCad schematic sheet for the Power Distribution Unit' },
+    ],
+    skills: ['KiCad', 'Schematic Design', 'PCB Layout', 'STM32G474', 'FDCAN', 'Power Distribution', 'Analog Front-End', 'Circuit Protection'],
+    sections: [
+      {
+        heading: 'System Requirements',
+        body: 'The board splits the LV accumulator’s 24 V rail across ten independently switched channels (control boards, coolant pumps, radiator and battery fans, line lock, brake light, and the TSSI lights) while also conditioning the car’s analog and digital sensing: coolant temperatures and flow, ambient temperature, shutdown-circuit taps, fan tachometers, and the brake-system encoder. Input power is OR’d between the vehicle harness and a USB-C bench supply.',
+      },
+      {
+        heading: 'Channel Design',
+        body: 'Each channel is a TPS1HTC30-Q1 smart high-side switch behind its own fuse, with an external resistor programming the device’s electronic current limit, local bulk capacitance, a transient clamp, a Schottky freewheel path for inductive loads, and a loss-of-ground network. Enables default off in hardware through pulldowns, and the fan channels are driven below the switch’s PWM ceiling.',
+      },
+      {
+        heading: 'Diagnostics',
+        body: 'Every channel is instrumented twice: the switch’s own analog current mirror reports load current, and a separate post-switch resistive tap reports actual output voltage. The second path exists because the fuse sits upstream of the switch, so a blown fuse leaves the switch reporting a perfectly healthy, fault-free, zero-current channel. Only the voltage tap separates “commanded off” from “fuse open,” which is what lets firmware raise the right fault instead of losing systems mid-run. Everything reports over two independent FDCAN buses: a critical-systems bus, and an E-meter bus.',
+      },
+      {
+        heading: 'My Contributions',
+        body: 'I co-owned the board. I designed much of the filter and signal-conditioning circuitry, revised portions of the high-side switch design, set the MCU pinout and routed its signals in layout, and built out the input sense and output stages.',
+      },
+    ],
+  },
+  {
+    id: 'input-module',
+    name: 'Input Module',
+    org: 'Adom Industries',
+    dates: 'May 2026 – Aug 2026',
+    blurb:
+      'A distributed sensing rack: embedded boards that identify third-party devices and report them over CAN to a gateway and server.',
+    metrics: [
+      { value: '2', label: 'Buses bridged (CAN, RS-485)' },
+      { value: '3', label: 'Tiers built (board, gateway, server)' },
+      { value: '2', label: 'Boards manufactured and in production' },
+    ],
+    images: [],
+    skills: ['Embedded Rust', 'CAN', 'RS-485', 'Raspberry Pi', 'WebSocket', 'JavaScript', 'Python'],
+    sections: [
+      {
+        heading: 'System Requirements',
+        body: 'The system needed to identify attached third-party devices, report their state reliably to a central controller, and drive real-time status indicators across a rack — forming the sensing layer of an inventory-management system.',
+      },
+      {
+        heading: 'Process',
+        body: 'I designed the embedded boards that identify third-party devices and pass their state over a shared CAN bus to a Raspberry Pi acting as gateway. I architected and built both client and server for the data pipeline: the Pi relays messages over WebSocket to a server that cross-references them against a database to infer the contents of each slot.',
+      },
+      {
+        heading: 'My Contributions',
+        body: 'I designed the board and wrote its firmware, built the gateway client, and adapted the server to support the data pipeline (accepting data, integrating it with the database, dashboard for lookup, etc.). Real-time status indicators are driven from an LED-state array the server returns, so the rack reflects changes dynamically.',
+      },
+    ],
+  },
+  {
     id: 'corner-sensor-module',
     name: 'Corner Sensor Module',
     org: 'Longhorn Racing · Formula SAE',
-    dates: 'Sept 2025 – Present',
+    dates: '2025 – 2026',
     blurb:
       'A 4-layer PCB that collects real-time suspension telemetry from four sensors and streams it over SPI and CAN.',
     metrics: [
@@ -38,31 +104,35 @@ export const projects = [
     ],
   },
   {
-    id: 'input-module',
-    name: 'Input Module',
-    org: 'Adom Industries',
-    dates: 'May 2026 – Aug 2026',
+    id: 'upright-sensor-module',
+    name: 'Upright Sensor Module',
+    org: 'Longhorn Racing · Formula SAE',
+    dates: '2026',
     blurb:
-      'A distributed sensing rack: embedded boards that identify third-party devices and report them over CAN to a gateway and server.',
+      'A sensor node at each of the car’s four uprights, measuring wheel speed, unsprung motion, and suspension travel and publishing to the VCU over CAN.',
     metrics: [
-      { value: '2', label: 'Buses bridged (CAN, RS-485)' },
-      { value: '3', label: 'Tiers built (board, gateway, server)' },
-      { value: '2', label: 'Boards manufactured and in production' },
+      { value: '4', label: 'Corners, one board design' },
+      { value: '200 Hz', label: 'Wheel-speed output rate' },
+      { value: '±32 g', label: 'Unsprung accelerometer range' },
     ],
-    images: [],
-    skills: ['Embedded Rust', 'CAN', 'RS-485', 'Raspberry Pi', 'WebSocket', 'JavaScript', 'Python'],
+    images: [
+      { src: asset('USM_RevA_3D_Top.png'), alt: 'Render of the Upright Sensor Module PCB' },
+      { src: asset('USM_RevA_Layout.png'), alt: 'KiCad layout view of the Upright Sensor Module' },
+      { src: asset('USM_RevA_Schematic.png'), alt: 'KiCad schematic sheet for the Upright Sensor Module' },
+    ],
+    skills: ['KiCad', 'Schematic Design', 'STM32G474', 'SPI', 'FDCAN', 'Magnetometer Sensing', 'Analog Front-End', 'Power Design'],
     sections: [
       {
         heading: 'System Requirements',
-        body: 'The system needed to identify attached third-party devices, report their state reliably to a central controller, and drive real-time status indicators across a rack — forming the sensing layer of an inventory-management system.',
+        body: 'One identical board has to serve all four uprights, measuring wheel speed, unsprung-mass motion, and suspension travel, then publishing to the VCU over the non-critical data CAN bus. Each board identifies its own corner over CAN so firmware loads per-corner constants (magnet pole-pair count, tire radius, sensor calibration, and IMU axis orientation) instead of maintaining four board variants.',
       },
       {
         heading: 'Process',
-        body: 'I designed the embedded boards that communicate with the third-party devices and pass their state over a shared CAN bus to a Raspberry Pi acting as gateway. I architected and built both client and server for the data pipeline: the Pi relays messages over WebSocket to a server that cross-references them against a database to infer the contents of each slot.',
+        body: 'Wheel speed drove the design. Rather than counting pulses like the previous season’s system, four MLX90395 magnetometers spaced 15° apart give two pairs of sensors 90° apart electrically, reading as two pairs of sine and cosine. Continuous phase still gives fresh data at launch speeds, where tick counting falls apart. That is what will make more sophisticated control possible downstream.',
       },
       {
         heading: 'My Contributions',
-        body: 'I designed the board and wrote its firmware, built the gateway client, and adapted the server to support the data pipeline (accepting data, integrating it with the database, dashboard for lookup, etc.). Real-time status indicators are driven from an LED-state array the server returns, so the rack reflects changes dynamically.',
+        body: 'I owned the schematic and contributed to the layout: the STM32G474 core, the FDCAN interface with solder-jumper-selectable split termination, the sensor buses, and the analog front end for the suspension potentiometer (divider, anti-alias filter, TVS clamp, and unity-gain buffer, with analog and digital grounds joined at a single point). An ideal-diode controller ORs the harness 5 V rail with USB-C so the board runs on the bench without the car, and the harness connector moved to through-hole after pad-lift failures the prior season.',
       },
     ],
   },
@@ -70,7 +140,7 @@ export const projects = [
     id: 'vehicle-harness',
     name: 'Vehicle Harness',
     org: 'Longhorn Racing · Formula SAE',
-    dates: 'Sept 2025 – Present',
+    dates: '2025 – 2026',
     blurb:
       'Full-vehicle wire harness modeled in SolidWorks and built in RapidHarness. I owned the rear-right segment.',
     metrics: [
@@ -101,7 +171,7 @@ export const projects = [
     id: 'discharge-board',
     name: 'Discharge Board',
     org: 'Longhorn Racing · Formula SAE',
-    dates: 'Sept 2025 – Present',
+    dates: '2025 – 2026',
     blurb:
       'A high-voltage PCB that bleeds the 546V tractive system to under 60V within five seconds of shutdown.',
     metrics: [
@@ -173,27 +243,14 @@ export const research = [
     org: 'Robot Interactive Intelligence Lab · UT Austin',
     dates: 'Nov 2025 – Present',
     blurb:
-      'Teleoperated demonstration data for a behavioral-cloning policy that performs pick-and-place across varied physical media.',
+      'Multimodal transformer policies trained via imitation learning for contact-rich manipulation across the air–water interface.',
     metrics: [
-      { value: '300+', label: 'Demonstrations collected' },
-      { value: '3', label: 'Sensing modalities' },
-      { value: '7', label: 'Arm degrees of freedom' },
+      
     ],
     images: [],
-    skills: ['Python', 'Imitation Learning', 'Behavioral Cloning', 'Teleoperation', 'Data Curation', 'Policy Rollouts'],
+    skills: ['Python', 'Imitation Learning', 'Transformer Policies', 'Teleoperation', 'Data Curation', 'Policy Rollouts'],
+    note: 'More details coming soon.',
     sections: [
-      {
-        heading: 'Research Question',
-        body: 'The policy needed to generalize pick-and-place behavior across physical media with meaningfully different dynamics, which demanded a large, consistent, high-quality demonstration set rather than raw volume.',
-      },
-      {
-        heading: 'Process',
-        body: 'I teleoperated a Franka Emika arm to collect 300+ demonstrations spanning the target media, captured across three sensing modalities: tactile sensing, depth sensing, and a camera. I then curated the dataset by assessing each run and pruning suboptimal trajectories so only high-quality imitation data reached training, then ran policy rollouts to evaluate model performance against the collected behavior.',
-      },
-      {
-        heading: 'My Contributions',
-        body: 'I handled data collection, dataset curation, and evaluation: running rollouts to measure how the trained policy actually performs.',
-      },
     ],
   },
 ]

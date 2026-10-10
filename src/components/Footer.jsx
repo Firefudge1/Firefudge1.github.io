@@ -11,7 +11,7 @@ export default function Footer() {
         <div ref={ref} className="footer-inner reveal">
           <p className="eyebrow">Get in touch</p>
           <h2 className="footer-heading">
-            Open to internships and research in robotics, embedded systems, and
+            Open to chat about research in robotics, embedded systems, and
             hardware design.
           </h2>
 

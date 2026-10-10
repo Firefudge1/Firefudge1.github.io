@@ -39,6 +39,18 @@
   order: 2;
 }
 
+/* Entries with no imagery drop the media column rather than showing an
+   empty placeholder, and their text runs the full width instead of staying
+   inside the measure used alongside an image. */
+.work-item.is-textonly {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.work-item.is-textonly .work-blurb,
+.work-item.is-textonly .work-block-body {
+  max-width: none;
+}
+
 .work-media {
   position: sticky;
   top: 100px;
@@ -255,6 +267,18 @@
   font-size: 14.5px;
   line-height: 1.8;
   max-width: 68ch;
+}
+
+/* Optional aside — "paper coming soon" and the like. Reads as a sidenote
+   rather than another content block. */
+.work-note {
+  margin-top: 26px;
+  padding: 10px 0 10px 14px;
+  border-left: 2px solid var(--emerald-line);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-tertiary);
 }
 
 .chips {

@@ -20,7 +20,7 @@ export default function Hero() {
         </p>
 
         <p className="hero-bio">
-          Currently designing suspension telemetry electronics for Longhorn Racing’s
+          Currently designing power distribution electronics for Longhorn Racing’s
           Formula SAE car and researching imitation learning at the Robot Interactive
           Intelligence Lab.
         </p>

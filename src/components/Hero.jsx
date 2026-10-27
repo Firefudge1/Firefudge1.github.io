@@ -44,10 +44,10 @@ export default function Hero() {
 
         <div className="hero-portrait">
           <img
-            src={`${import.meta.env.BASE_URL}projects/AravKarnikNasaPicture.png`}
-            alt="Arav Karnik at NASA"
-            width="491"
-            height="508"
+            src={`${import.meta.env.BASE_URL}projects/arav_headshot3.png`}
+            alt="Arav Karnik"
+            width="912"
+            height="862"
           />
         </div>
       </div>
